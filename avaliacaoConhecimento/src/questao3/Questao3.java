@@ -8,17 +8,17 @@ public class Questao3 {
 	public static void questao3() {
 		// Dado a seguinte lista de Inteiros [2, 3, 4, 5, 6, 2, 7, 7, 11] crie duas listas,
 		// uma com apenas os números pares e outra com apenas os números impares, ambas listas em ordem crescente e sem números repetidos.
+		int[] lista = {2, 3, 4, 5, 6, 2, 7, 7, 11};
 		System.out.println(" --- Primeira Maneira de Solucionar Questão 3 --- ");
 		System.out.println(" --- Usando Java hardcoded --- ");
-		maneira1();
+		maneira1(lista);
 		System.out.println("\n --- Fim Primeira Maneira --- ");
 		System.out.println(" --- Segunda Maneira de Solucionar Questão 3 --- ");
 		System.out.println(" --- Usando Java 8 --- ");
-		maneira2();
+		maneira2(lista);
 		System.out.println("\n --- Fim Segunda Maneira --- ");
 	}
-	static void maneira1() {
-		int[] lista = {2, 3, 4, 5, 6, 2, 7, 7, 11};
+	static void maneira1(int[] lista) {
 		System.out.println("  Removendo Repetidos...");
 		System.out.println("  Ordenando Array...");
 		lista = removerRepetidos(lista);
@@ -79,7 +79,16 @@ public class Questao3 {
 		for(int i : impar) 
 			System.out.print(i + " ");
 	}
-	static void maneira2() {
+	static void maneira2(int[] lista) {
+		lista = Arrays.stream(lista).sorted().distinct().toArray();
+		int[] pares = Arrays.stream(lista).filter(i -> i % 2 == 0).toArray();
+		int[] impares = Arrays.stream(lista).filter(i -> i % 2 != 0).toArray();
+		System.out.print("  Lista de Pares: ");
+		for(int i : pares) 
+			System.out.print(i + " ");
+		System.out.print("\n  Lista de Impares: ");
+		for(int i : impares) 
+			System.out.print(i + " ");
 		
 	}
 }
